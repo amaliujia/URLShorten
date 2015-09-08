@@ -1,5 +1,7 @@
 import redis.clients.jedis.Jedis;
 
+import java.util.Random;
+
 /**
  * Created by amaliujia on 15-9-6.
  */
@@ -24,7 +26,9 @@ public class URLShortenWorker implements Runnable {
     }
 
     private void LongToShort(Request request){
-        int id = ShortenEngine.atomicInteger.getAndIncrement();
+        int id = ShortenEngine.atomicInteger.incrementAndGet();
+        //Random randomGenerator = new Random();
+        //int id = randomGenerator.nextInt(1000000);
         String shortURL = getShortURL(id);
         jedis.set(request.getContent(), shortURL);
         request.getCallback().responesString(shortURL);
@@ -45,6 +49,11 @@ public class URLShortenWorker implements Runnable {
             ret += Encode[number % 62];
             number /= 62;
         }
+
+        while(ret.length() < 6){
+            ret += '-';
+        }
+
         return ret;
     }
 }

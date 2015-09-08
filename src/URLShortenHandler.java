@@ -12,7 +12,7 @@ public class URLShortenHandler extends URLHandler{
         this.exchange = httpExchange;
         Map params = (Map)httpExchange.getAttribute("parameters");
 
-        Request request = new Request('1', (String) params.get("LongURL"), (ShortenResponse)this);
+        Request request = new Request('1', (String) params.get("longURL"), (ShortenResponse)this);
         RequestQueue queue = RequestQueue.sharedInstance();
         queue.addRequest(request);
     }

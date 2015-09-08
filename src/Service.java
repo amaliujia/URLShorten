@@ -17,7 +17,7 @@ public class Service{
         server.start();
 
         ShortenEngine engine = new ShortenEngine();
-
+        engine.startService();
     }
 }
 

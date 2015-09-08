@@ -14,7 +14,7 @@ public abstract class URLHandler implements ShortenResponse, HttpHandler{
 
     public void responesString(String content) {
         try {
-            if(content == "nil"){
+            if(content == null){
                 content = "Invalid short url";
             }
             exchange.sendResponseHeaders(200, content.length());
