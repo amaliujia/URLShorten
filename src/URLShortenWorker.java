@@ -27,10 +27,9 @@ public class URLShortenWorker implements Runnable {
 
     private void LongToShort(Request request){
         int id = ShortenEngine.atomicInteger.incrementAndGet();
-        //Random randomGenerator = new Random();
-        //int id = randomGenerator.nextInt(1000000);
         String shortURL = getShortURL(id);
         jedis.set(request.getContent(), shortURL);
+        jedis.set(shortURL, request.getContent());
         request.getCallback().responesString(shortURL);
     }
 

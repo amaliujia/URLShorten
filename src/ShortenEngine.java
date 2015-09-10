@@ -4,7 +4,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by amaliujia on 15-9-6.
  */
 public class ShortenEngine {
-    public static AtomicInteger atomicInteger = new AtomicInteger(0);
+    // id starts from
+    public static AtomicInteger atomicInteger = new AtomicInteger((int)Math.pow(62, 4));
 
     private URLShortenWorker[] workers;
 
